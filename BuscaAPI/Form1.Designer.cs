@@ -130,7 +130,7 @@ namespace BuscaAPI
             // columnHeader10
             // 
             this.columnHeader10.Text = "Siafi";
-            this.columnHeader10.Width = 50;
+            this.columnHeader10.Width = 54;
             // 
             // Form1
             // 
