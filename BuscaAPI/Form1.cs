@@ -18,22 +18,27 @@ namespace BuscaAPI
     {
         public Form1()
         {
-
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            List<string> lista = new List<string>();
+          
             var client = new RestClient(string.Format("https://viacep.com.br/ws/{0}/json/", textBox1.Text));
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
 
-            textBox2.Text = new JsonDeserializer().Deserialize<BuscaCep>(response).cep;
-            textBox3.Text = new JsonDeserializer().Deserialize<BuscaCep>(response).logradouro;
+            string cep = new JsonDeserializer().Deserialize<BuscaCep>(response).cep;
+            string logradouro = new JsonDeserializer().Deserialize<BuscaCep>(response).logradouro;
+            string complemento = new JsonDeserializer().Deserialize<BuscaCep>(response).complemento;
+            string bairro = new JsonDeserializer().Deserialize<BuscaCep>(response).bairro;
+            string localidade = new JsonDeserializer().Deserialize<BuscaCep>(response).localidade;
+            string uf = new JsonDeserializer().Deserialize<BuscaCep>(response).uf;
+            string ibge = new JsonDeserializer().Deserialize<BuscaCep>(response).ibge;
+            string gia = new JsonDeserializer().Deserialize<BuscaCep>(response).gia;
+            string ddd = new JsonDeserializer().Deserialize<BuscaCep>(response).ddd;
+            string siafi = new JsonDeserializer().Deserialize<BuscaCep>(response).siafi;
+            ListViewItem item = new ListViewItem(new[] { cep, logradouro, complemento, bairro, localidade, uf, ibge, gia, ddd, siafi });
+            listView1.Items.Add(item);
         }
     }
- 
-
-
 }
